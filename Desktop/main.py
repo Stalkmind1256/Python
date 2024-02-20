@@ -4,12 +4,16 @@ from PyQt5.QtGui import QIcon, QColor, QFont, QPalette
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton
 
 from login import LoginWindow
+from login_doctor import LoginDoctor
+from login_admin import LoginAdmin
 
 
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
+        self.loginDoctor = None
         self.loginWindow = None
+        self.loginAdmin = None
         self.setWindowTitle('Поликилнника')
         self.setGeometry(450, 400, 450, 400)
         self.setupWidgets()
@@ -34,16 +38,27 @@ class MainWindow(QWidget):
         btn3 = QPushButton('Вход для администратора', self)
         btn3.move(160, 120)
         btn3.setFixedWidth(200)
+        btn3.clicked.connect(self.openLoginWindow3)
 
         btn4 = QPushButton('Вход для врача', self)
         btn4.move(160, 145)
         btn4.setFixedWidth(200)
+        btn4.clicked.connect(self.openLoginWindow2)
 
     def openLoginWindow(self):
         self.loginWindow = LoginWindow()
         self.loginWindow.show()
         self.hide()
 
+    def openLoginWindow2(self):
+        self.loginDoctor = LoginDoctor()
+        self.loginDoctor.show()
+        self.hide()
+
+    def openLoginWindow3(self):
+        self.loginAdmin = LoginAdmin()
+        self.loginAdmin.show()
+        self.hide()
 
 
 
