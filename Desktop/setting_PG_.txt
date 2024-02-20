@@ -1,0 +1,27 @@
+1. Проверьте наличие папки `/var/lib/postgres/data`. Если ее нет, создайте ее с помощью команды:
+   ```
+   sudo mkdir -p /var/lib/postgres/data
+   ```
+
+2. Установите владельца и права доступа к папке:
+   ```
+   sudo chown -R postgres:postgres /var/lib/postgres/data
+   sudo chmod 700 /var/lib/postgres/data
+   ```
+
+3. Инициализируйте кластер базы данных PostgreSQL с помощью команды:
+   ```
+   sudo su - postgres -c "initdb --locale en_US.UTF-8 -D '/var/lib/postgres/data'"
+   ```
+
+4. После инициализации кластера, запустите службу PostgreSQL:
+   ```
+   sudo systemctl start postgresql.service
+   ```
+
+5. Убедитесь, что служба запустилась успешно, выполните команду:
+   ```
+   sudo systemctl status postgresql
+   ```
+
+Теперь служба PostgreSQL должна успешно запускаться.
