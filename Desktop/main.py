@@ -19,6 +19,7 @@ class MainWindow(QWidget):
         self.setupWidgets()
         self.show()
 
+
     def setupWidgets(self):
         main_text = QLabel(self)
         main_text.setText('Поликлинника')
