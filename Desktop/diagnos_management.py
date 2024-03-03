@@ -32,14 +32,17 @@ class diagn_manager(QWidget):
         self.diagnos_description_input.move(150, 45)
 
         accept_button = QPushButton('Добавить диагноз', self)
-        accept_button.move(280, 30)
+        accept_button.move(280, 20)
         accept_button.setFixedWidth(150)
         accept_button.clicked.connect(self.add_data)
+
 
         self.table = QTableWidget(self)
         self.table.setGeometry(25, 90, 400, 280)
         self.table.setColumnCount(3)
         self.table.setHorizontalHeaderLabels(['Название', 'Описание', 'Удалить'])
+
+
 
     def add_data(self):
         db_connect = connect_db()

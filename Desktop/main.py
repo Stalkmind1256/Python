@@ -6,11 +6,13 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton
 from login import LoginWindow
 from login_doctor import LoginDoctor
 from login_admin import LoginAdmin
+from registration import RegistrationWindow
 
 
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
+        self.registrPatient = None
         self.loginDoctor = None
         self.loginWindow = None
         self.loginAdmin = None
@@ -30,6 +32,7 @@ class MainWindow(QWidget):
         btn1 = QPushButton('Регистрация', self)
         btn1.move(160, 70)
         btn1.setFixedWidth(200)
+        btn1.clicked.connect(self.openLoginWindow4)
 
         btn2 = QPushButton('Вход', self)
         btn2.move(160, 95)
@@ -61,7 +64,10 @@ class MainWindow(QWidget):
         self.loginAdmin.show()
         self.hide()
 
-
+    def openLoginWindow4(self):
+        self.registrPatient = RegistrationWindow(self)
+        self.registrPatient.show()
+        self.hide()
 
 
 
