@@ -1,10 +1,12 @@
 import sys
 
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import (QApplication, QWidget, QLabel, QLineEdit, QPushButton, QPlainTextEdit, QTableWidget, QTableWidgetItem,
+from PyQt5.QtWidgets import (QApplication, QWidget, QLabel, QLineEdit, QPushButton, QPlainTextEdit, QTableWidget,
+                             QTableWidgetItem,
                              QMessageBox)
 
 from database_connection import connect_db
+
 
 
 class diagn_manager(QWidget):
@@ -36,13 +38,15 @@ class diagn_manager(QWidget):
         accept_button.setFixedWidth(150)
         accept_button.clicked.connect(self.add_data)
 
+        exit_button = QPushButton('Главная', self)
+        exit_button.move(280, 45)
+        exit_button.setFixedWidth(150)
+        exit_button.clicked.connect(self.goto_main)
 
         self.table = QTableWidget(self)
         self.table.setGeometry(25, 90, 400, 280)
         self.table.setColumnCount(3)
         self.table.setHorizontalHeaderLabels(['Название', 'Описание', 'Удалить'])
-
-
 
     def add_data(self):
         db_connect = connect_db()
@@ -61,6 +65,13 @@ class diagn_manager(QWidget):
             cursor.close()
             db_connect.close()
             self.display()
+
+    def goto_main(self):
+        from main_admin import AdminWindow
+        self.hide()
+        self.main_window = AdminWindow()
+        self.main_window.show()
+
 
     def display(self):
         db_connect = connect_db()
@@ -87,7 +98,7 @@ class diagn_manager(QWidget):
             db_connect = connect_db()
             if db_connect:
                 cursor = db_connect.cursor()
-                name = self.table.item(row,0).text()
+                name = self.table.item(row, 0).text()
                 query = "DELETE FROM diagnosis WHERE name = %s"
                 cursor.execute(query, (name,))
                 db_connect.commit()

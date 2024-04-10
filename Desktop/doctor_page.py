@@ -12,10 +12,10 @@ class DoctorWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Страница врача')
-        self.setGeometry(450, 450, 450, 450)
+        self.setGeometry(450, 450, 750, 450)
 
         self.table = QTableWidget(self)
-        self.table.setGeometry(10, 10, 590, 470)
+        self.table.setGeometry(10, 10, 725, 470)
         self.table.setColumnCount(8)
         self.table.setHorizontalHeaderLabels(
             ['ID', 'ID Доктора', 'ID Пациента', 'Дата', 'Время', 'ID Диагноза', 'Выбрать диагноз',

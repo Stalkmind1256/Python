@@ -8,6 +8,7 @@ from patient_page import PatientPage
 class LoginWindow(QWidget):
     def __init__(self):
         super().__init__()
+        self.patient_page = None
         self.setWindowTitle('Вход')
         self.setGeometry(450, 400, 450, 400)
         self.setupWidgets()
@@ -42,7 +43,7 @@ class LoginWindow(QWidget):
         if result is not None and result[1] == password:
             self.openPatientPage()
         else:
-            QMessageBox.warning(self, 'Ошибка входа, проверьте правильность логина или пароля')
+            QMessageBox.information(self, "", 'Ошибка входа, проверьте правильность логина или пароля')
 
         cursor.close()
         db_connect.close()

@@ -31,6 +31,18 @@ class AdminWindow(QWidget):
         accept_button.move(160, 190)
         accept_button.setFixedWidth(200)
 
+        exit_button = QPushButton('Выход', self)
+        exit_button.move(160, 220)
+        exit_button.setFixedWidth(200)
+        exit_button.clicked.connect(self.goto_main)
+
+    def goto_main(self):
+        from main import MainWindow
+        self.hide()
+        self.main = MainWindow()
+        self.main.show()
+
+
     def manage_diagnos(self):
         self.diagnos_manager = diagn_manager()
         self.diagnos_manager.show()

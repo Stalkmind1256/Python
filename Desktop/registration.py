@@ -92,8 +92,13 @@ class RegistrationWindow(QWidget):
         self.hide()
 
     def register(self):
+        if not self.check_fields():
+            QMessageBox.warning(self, 'Ошибка', "Все поля должны быть заполнены")
+            return
         if self.check_password():
             self.add_data()
+
+
 
     def add_data(self):
         db_connect = connect_db()
@@ -119,6 +124,23 @@ class RegistrationWindow(QWidget):
         cursor.close()
         db_connect.close()
 
+        QMessageBox.information(self, "Успех", "Вы успешно зарегистрировались")
+        self.close()
+
+        from main import MainWindow
+        self.mainWin = MainWindow()
+        self.mainWin.show()
+
+
+    def check_fields(self):
+        if (self.lastname.text() and self.firstname.text() and self.middlename.text()
+                and self.passport.text() and self.phone.text() and self.email.text() and
+                self.password.text() and self.password_again.text()):
+            return True
+        else:
+            return False
+
+
     def check_password(self):
         password = self.password.text()
         password_again = self.password_again.text()
@@ -127,6 +149,8 @@ class RegistrationWindow(QWidget):
             return False
         else:
             return True
+
+
 
 
 if __name__ == '__main__':

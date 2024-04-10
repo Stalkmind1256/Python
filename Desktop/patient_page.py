@@ -11,6 +11,7 @@ from database_connection import connect_db
 class PatientPage(QWidget):
     def __init__(self):
         super().__init__()
+        self.main_window = None
         self.data = None
         self.time = None
         self.doctor = None
@@ -41,7 +42,7 @@ class PatientPage(QWidget):
         self.data = QDateEdit(self)
         self.data.move(90, 120)
 
-        #self.patient_model = {}
+        # self.patient_model = {}
 
         button_accept = QPushButton('Записаться на прием', self)
         button_accept.move(27, 150)
@@ -87,6 +88,14 @@ class PatientPage(QWidget):
         db_connect.commit()
         cursor.close()
         db_connect.close()
+
+        QMessageBox.information(self, "Успех", "Вы успешно записались на прием!")
+        self.close()
+
+        # Локальный импорт интерфеса, musthave, чтобы   бороться с циклическим импортом
+        from main import MainWindow
+        self.main_window = MainWindow()
+        self.main_window.show()
 
 
 if __name__ == '__main__':
