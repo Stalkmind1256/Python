@@ -64,6 +64,11 @@ class personal_management_Window(QWidget):
         accept_button.move(270, 20)
         accept_button.setFixedWidth(150)
         accept_button.clicked.connect(self.add_data)
+        
+        #exit_button = QPushButton('Главная',self)
+        #exit_button.move(270, 45)
+        #exit_button.setFixedWidth(150)
+        #exit_button.clicked.connect(self.goto_main)
 
         self.table = QTableWidget(self)
         self.table.setGeometry(25, 200, 750, 550)
@@ -127,7 +132,8 @@ class personal_management_Window(QWidget):
 
                 self.display()
                 QMessageBox.warning(self, 'Успех', 'Данные удалены')
-
+	
+	
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

@@ -2,9 +2,9 @@ import sys
 import datetime
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import (QApplication, QWidget, QLabel, QDateEdit, QLineEdit, QPushButton, QTableWidget,
-                             QTableWidgetItem,
+                             QTableWidgetItem, QDialog,
                              QMessageBox)
-
+from PyQt5.QtCore import Qt
 from database_connection import connect_db
 
 

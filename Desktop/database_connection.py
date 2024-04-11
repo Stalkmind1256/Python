@@ -6,7 +6,8 @@ def connect_db():
         connections = psycopg2.connect(
             host="localhost",
             port="5432",
-            database="postgres",
+            #database="postgres",
+            database="poliklinnika",
             user="postgres",
             password="123456",
         )

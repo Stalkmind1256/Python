@@ -2,7 +2,7 @@
 import sys
 
 from PyQt5.QtGui import QIcon, QColor, QFont, QPalette
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QDialog
 
 from login import LoginWindow
 from login_doctor import LoginDoctor
@@ -50,24 +50,24 @@ class MainWindow(QWidget):
         btn4.setFixedWidth(200)
         btn4.clicked.connect(self.openLoginWindow2)
 
-    def openLoginWindow(self):
+    def openLoginWindow(QDialog):
         self.loginWindow = LoginWindow()
-        self.loginWindow.show()
-        self.hide()
+        self.loginWindow.exec_()
+        #self.hide()
 
     def openLoginWindow2(self):
         self.loginDoctor = LoginDoctor()
-        self.loginDoctor.show()
-        self.hide()
+        self.loginDoctor.exec_()
+        #self.hide()
 
     def openLoginWindow3(self):
         self.loginAdmin = LoginAdmin()
-        self.loginAdmin.show()
-        self.hide()
+        self.loginAdmin.exec_()
+#        self.hide()
 
     def openLoginWindow4(self):
         self.registrPatient = RegistrationWindow(self)
-        self.registrPatient.show()
+        self.registrPatient.exec_()
         self.hide()
 
 

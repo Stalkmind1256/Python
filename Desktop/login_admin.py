@@ -1,15 +1,16 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QErrorMessage
-
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QErrorMessage, QDialog
+from PyQt5.QtCore import Qt
 from main_admin import AdminWindow
 
 
-class LoginAdmin(QWidget):
+class LoginAdmin(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Вход для администратора')
         self.setGeometry(450, 400, 450, 400)
         self.setupWidgets()
+        self.setWindowModality(Qt.WindowModal)
 
     def setupWidgets(self):
         login_label = QLabel('Логин', self)

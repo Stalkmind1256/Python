@@ -1,11 +1,12 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox,QDialog
 from database_connection import connect_db
 from patient_page import PatientPage
+from PyQt5.QtCore import Qt
 
 
-class LoginWindow(QWidget):
+class LoginWindow(QDialog):
     def __init__(self):
         super().__init__()
         self.patient_page = None
