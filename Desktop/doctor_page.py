@@ -3,12 +3,12 @@ import sys
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import (QApplication, QWidget, QLabel, QLineEdit, QPushButton, QTableWidget,
                              QTableWidgetItem, QComboBox,
-                             QMessageBox, QMainWindow)
+                             QMessageBox, QMainWindow,QDialog)
 
 from database_connection import connect_db
 
 
-class DoctorWindow(QWidget):
+class DoctorWindow(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Страница врача')

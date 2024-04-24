@@ -2,13 +2,13 @@ import sys
 import datetime
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import (QApplication, QWidget, QLabel, QDateEdit, QLineEdit, QPushButton, QTableWidget,
-                             QTableWidgetItem,
+                             QTableWidgetItem, QDialog,
                              QMessageBox)
-
+from PyQt5.QtCore import Qt
 from database_connection import connect_db
 
 
-class RegistrationWindow(QWidget):
+class RegistrationWindow(QDialog):
     def __init__(self, mainWindow):
         super().__init__()
         self.mainWindow = mainWindow
@@ -82,14 +82,14 @@ class RegistrationWindow(QWidget):
         accept_button.setFixedWidth(200)
         accept_button.clicked.connect(self.register)
 
-        exit_main = QPushButton('Главная', self)
-        exit_main.move(370, 370)
-        exit_main.setFixedWidth(200)
-        exit_main.clicked.connect(self.open_main)
+        #exit_main = QPushButton('Главная', self)
+        #exit_main.move(370, 370)
+        #exit_main.setFixedWidth(200)
+        #exit_main.clicked.connect(self.open_main)
 
-    def open_main(self):
-        self.mainWindow.show()
-        self.hide()
+    #def open_main(self):
+        #self.mainWindow.show()
+       #self.hide()
 
     def register(self):
         if not self.check_fields():
@@ -97,8 +97,6 @@ class RegistrationWindow(QWidget):
             return
         if self.check_password():
             self.add_data()
-
-
 
     def add_data(self):
         db_connect = connect_db()
@@ -131,7 +129,6 @@ class RegistrationWindow(QWidget):
         self.mainWin = MainWindow()
         self.mainWin.show()
 
-
     def check_fields(self):
         if (self.lastname.text() and self.firstname.text() and self.middlename.text()
                 and self.passport.text() and self.phone.text() and self.email.text() and
@@ -139,7 +136,6 @@ class RegistrationWindow(QWidget):
             return True
         else:
             return False
-
 
     def check_password(self):
         password = self.password.text()
@@ -149,8 +145,6 @@ class RegistrationWindow(QWidget):
             return False
         else:
             return True
-
-
 
 
 if __name__ == '__main__':

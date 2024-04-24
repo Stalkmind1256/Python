@@ -3,13 +3,13 @@ import sys
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import (QApplication, QWidget, QLabel, QLineEdit, QPushButton, QPlainTextEdit, QTableWidget,
                              QTableWidgetItem,
-                             QMessageBox)
+                             QMessageBox,QDialog)
 
 from database_connection import connect_db
 
 
 
-class diagn_manager(QWidget):
+class diagn_manager(QDialog):
     def __init__(self):
         super().__init__()
         self.table = None
@@ -38,10 +38,10 @@ class diagn_manager(QWidget):
         accept_button.setFixedWidth(150)
         accept_button.clicked.connect(self.add_data)
 
-        exit_button = QPushButton('Главная', self)
-        exit_button.move(280, 45)
-        exit_button.setFixedWidth(150)
-        exit_button.clicked.connect(self.goto_main)
+        #exit_button = QPushButton('Главная', self)
+        #exit_button.move(280, 45)
+        #exit_button.setFixedWidth(150)
+        #exit_button.clicked.connect(self.goto_main)
 
         self.table = QTableWidget(self)
         self.table.setGeometry(25, 90, 400, 280)
@@ -66,11 +66,11 @@ class diagn_manager(QWidget):
             db_connect.close()
             self.display()
 
-    def goto_main(self):
-        from main_admin import AdminWindow
-        self.hide()
-        self.main_window = AdminWindow()
-        self.main_window.show()
+    #def goto_main(self):
+        #from main_admin import AdminWindow
+        #self.hide()
+        #self.main_window = AdminWindow()
+        #self.main_window.show()
 
 
     def display(self):

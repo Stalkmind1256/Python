@@ -3,12 +3,12 @@ import sys
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import (QApplication, QWidget, QLabel, QLineEdit, QPushButton, QTableWidget,
                              QTableWidgetItem,
-                             QMessageBox)
+                             QMessageBox, QDialog, QHeaderView)
 
 from database_connection import connect_db
 
 
-class personal_management_Window(QWidget):
+class personal_management_Window(QDialog):
     def __init__(self):
         super().__init__()
         self.middlename = None
@@ -65,11 +65,17 @@ class personal_management_Window(QWidget):
         accept_button.setFixedWidth(150)
         accept_button.clicked.connect(self.add_data)
 
-        self.table = QTableWidget(self)
-        self.table.setGeometry(25, 200, 750, 550)
-        self.table.setColumnCount(8)
-        self.table.setHorizontalHeaderLabels(['Фамилия', 'Имя', 'Отчество', 'Специализация', 'Телефон', 'Номер кабинета', 'Пароль', 'Удалить'])
+        # exit_button = QPushButton('Главная',self)
+        # exit_button.move(270, 45)
+        # exit_button.setFixedWidth(150)
+        # exit_button.clicked.connect(self.goto_main)
 
+        self.table = QTableWidget(self)
+        self.table.setGeometry(10, 200, 750, 550)
+        self.table.setColumnCount(8)
+        self.table.setHorizontalHeaderLabels(
+            ['Фамилия', 'Имя', 'Отчество', 'Специализация', 'Телефон', 'Номер кабинета', 'Пароль', 'Удалить'])
+        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     def add_data(self):
         db_connect = connect_db()
         cursor = db_connect.cursor()
@@ -83,7 +89,8 @@ class personal_management_Window(QWidget):
 
         query = ("INSERT INTO doctors (lastname, firstname, middlename, specializations, phone, number_of_cabinet, "
                  "password) VALUES (%s, %s, %s, %s, %s, %s, %s)")
-        data = (lastname_text, firstname_text, middlename_text, specialization_text, phone_text, number_cab_text, password_text)
+        data = (
+        lastname_text, firstname_text, middlename_text, specialization_text, phone_text, number_cab_text, password_text)
         cursor.execute(query, data)
 
         db_connect.commit()

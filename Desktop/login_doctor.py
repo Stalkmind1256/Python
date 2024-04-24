@@ -1,9 +1,11 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDialog
 from database_connection import connect_db
+from PyQt5.QtCore import Qt
 
 
-class LoginDoctor(QWidget):
+
+class LoginDoctor(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Вход')
@@ -50,9 +52,9 @@ class LoginDoctor(QWidget):
 
     def openDoctorPage(self):
         from doctor_page import DoctorWindow
-        self.hide()
+        #self.hide()
         self.doctorWindow = DoctorWindow()
-        self.doctorWindow.show()
+        self.doctorWindow.exec_()
 
 
 
