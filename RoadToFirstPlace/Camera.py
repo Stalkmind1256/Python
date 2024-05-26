@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 import threading
+import datetime
+
 
 class RTSPCamera:
     def __init__(self, rtsp_url):
@@ -40,8 +42,8 @@ class RTSPCamera:
             return None, None
         # Конвертация из BGR в HSV
         target_color_hsv = cv2.cvtColor(np.uint8([[target_color_bgr]]), cv2.COLOR_BGR2HSV)[0][0]
-        lower_bound = np.array([target_color_hsv[0]-delta, 100, 100])
-        upper_bound = np.array([target_color_hsv[0]+delta, 255, 255])
+        lower_bound = np.array([target_color_hsv[0] - delta, 100, 100])
+        upper_bound = np.array([target_color_hsv[0] + delta, 255, 255])
 
         hsv_frame = cv2.cvtColor(self.frame, cv2.COLOR_BGR2HSV)
         mask = cv2.inRange(hsv_frame, lower_bound, upper_bound)
