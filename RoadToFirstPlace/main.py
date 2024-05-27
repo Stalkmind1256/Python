@@ -1,5 +1,4 @@
 import cv2
-import numpy
 from Camera import RTSPCamera
 import datetime
 import threading
@@ -28,7 +27,7 @@ def camera1_thread():
 
 def camera2_thread():
     while True:
-        frame2 = camera2.read()
+        ret2,frame2 = camera2.read()
         if frame2 is None:
             continue
         topLeft = (30,130)
@@ -40,10 +39,11 @@ def camera2_thread():
     camera2.stop()
 
 camera1 = RTSPCamera('http://158.58.130.148:80/mjpg/video.mjpg')
-camera2 = RTSPCamera('http://158.58.130.148:80/mjpg/video.mjpg')
+#camera2 = RTSPCamera('http://158.58.130.148:80/mjpg/video.mjpg')
+camera2 = cv2.VideoCapture(0)
 
 camera1.start()
-camera2.start()
+#camera2.start()
 
 thread1 = threading.Thread(target=camera1_thread)
 thread2 = threading.Thread(target=camera2_thread)
