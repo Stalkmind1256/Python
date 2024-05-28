@@ -27,16 +27,24 @@ def camera1_thread():
 
 def camera2_thread():
     while True:
-        ret2,frame2 = camera2.read()
+        _, frame2 = camera2.read()
         if frame2 is None:
             continue
-        topLeft = (30,130)
-        botRight = (130,230)
-        cv2.rectangle(frame2,topLeft,botRight,(255,0,0),3)
+        gray = cv2.cvtColor(frame2,cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+
+        for (x, y, w, h) in faces:
+            cv2.rectangle(frame2, (x, y), (x + w, y + h), (0, 0, 255), 2)
+
+        #topLeft = (30,130)
+        #botRight = (130,230)
+        #cv2.rectangle(frame2,topLeft,botRight,(255,0,0),3)
         cv2.imshow('Camera 2',frame2)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     camera2.stop()
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
 
 camera1 = RTSPCamera('http://158.58.130.148:80/mjpg/video.mjpg')
 #camera2 = RTSPCamera('http://158.58.130.148:80/mjpg/video.mjpg')
@@ -46,11 +54,11 @@ camera1.start()
 #camera2.start()
 
 thread1 = threading.Thread(target=camera1_thread)
-thread2 = threading.Thread(target=camera2_thread)
+#thread2 = threading.Thread(target=camera2_thread)
 thread1.start()
-thread2.start()
+#thread2.start()
 
 thread1.join()
-thread2.join()
+#thread2.join()
 
 cv2.destroyAllWindows()
