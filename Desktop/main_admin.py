@@ -23,13 +23,13 @@ class AdminWindow(QDialog):
         accept_button2.setFixedWidth(200)
         accept_button2.clicked.connect(self.personal_manager)
 
-        accept_button = QPushButton('Список диагнозов', self)
-        accept_button.move(140, 160)
-        accept_button.setFixedWidth(200)
+        #accept_button = QPushButton('Список диагнозов', self)
+        #accept_button.move(140, 160)
+        #accept_button.setFixedWidth(200)
 
-        accept_button = QPushButton('Список персонала', self)
-        accept_button.move(140, 190)
-        accept_button.setFixedWidth(200)
+        #accept_button = QPushButton('Список персонала', self)
+        #accept_button.move(140, 190)
+        #accept_button.setFixedWidth(200)
 
         #exit_button = QPushButton('Выход', self)
         #exit_button.move(160, 220)

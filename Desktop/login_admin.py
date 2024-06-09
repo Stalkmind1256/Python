@@ -10,7 +10,7 @@ class LoginAdmin(QDialog):
         self.setWindowTitle('Вход для администратора')
         self.setGeometry(450, 400, 450, 400)
         self.setupWidgets()
-        self.setWindowModality(Qt.WindowModal)
+        #self.setWindowModality(Qt.WindowModal)
 
     def setupWidgets(self):
         login_label = QLabel('Логин', self)
